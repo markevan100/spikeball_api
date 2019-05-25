@@ -57,7 +57,7 @@ RSpec.describe 'users API', type: :request do
       before { post '/api/users', params: valid_attributes }
 
       it 'creates an user' do
-        expect(json['name']).to eq(55)
+        expect(json['name']).to eq("Tim Duncan")
         expect(json['email']).to eq("tim@duncan.com")
         expect(json['password_digest']).to eq('mypassword')
       end
@@ -68,7 +68,7 @@ RSpec.describe 'users API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/api/users', params: { name: "Tim Duncan" } }
+      before { post '/api/users', params: { name: "Tim Duncan", email: "tim@duncan.com" } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -76,7 +76,7 @@ RSpec.describe 'users API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match("{\"message\":\"Validation failed: Email can't be blank\"}")
+          .to match("{\"message\":\"Validation failed: Password digest can't be blank\"}")
       end
     end
   end
