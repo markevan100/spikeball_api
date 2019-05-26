@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resources :users
     resources :user_events, only: [:create, :destroy]
   end
+
+  post 'authenticate', to: 'authentication#authenticate'
 end
