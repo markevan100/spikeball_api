@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :events
     resources :users
+    resources :user_events, only: [:create, :destroy]
   end
 end
