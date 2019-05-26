@@ -27,7 +27,12 @@ RSpec.describe 'events API', type: :request do
     context 'when the record exists' do
       it 'returns the event' do
         expect(json).not_to be_empty
-        expect(json['id']).to eq(event_id)
+        expect(json['event']['id']).to eq(event_id)
+      end
+
+      it 'returns the event users' do
+        expect(json).not_to be_empty
+        expect(json['users']).to eq([])
       end
 
       it 'returns status code 200' do

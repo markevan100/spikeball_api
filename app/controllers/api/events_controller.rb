@@ -15,7 +15,7 @@ class Api::EventsController < ApplicationController
 
   # GET /events/:id
   def show
-    json_response(@event)
+    json_response({:event=>@event, :users=>@event.users})
   end
 
   # PUT /events/:id
