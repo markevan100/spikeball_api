@@ -5,6 +5,7 @@ RSpec.describe 'events API', type: :request do
   let!(:events) { create_list(:event, 10) }
   let(:event_id) { events.first.id }
 
+
   # Test suite for GET /api/events
   describe 'GET /api/events' do
     # make HTTP get request before each example

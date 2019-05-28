@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_request, only: [:create]
 
   # GET /users
   def index
@@ -10,7 +11,8 @@ class Api::UsersController < ApplicationController
   # POST /users
   def create
     @user = User.create!(user_params)
-    json_response(@user, :created)
+    authenticate_sign_up
+    json_response({:user=>@user, :auth_token=>@auth_token}, :created)
   end
 
   # GET /users/:id

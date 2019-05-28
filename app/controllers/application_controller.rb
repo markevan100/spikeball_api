@@ -3,7 +3,13 @@ class ApplicationController < ActionController::API
   include ExceptionHandler
 
   before_action :authenticate_request
+  skip_before_action :authenticate_request, only: [:authenticate]
    attr_reader :current_user
+
+   def authenticate_sign_up
+     command = AuthenticateUser.call(params[:email], params[:password])
+    @auth_token = command.result
+   end
 
    private
 
